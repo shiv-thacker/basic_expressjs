@@ -2,7 +2,12 @@ const path = require("path"); //PATH MODELE TO GIVE HTML FILE PATH
 const express = require("express");
 const app = express();
 const port = 8000;
+
 app.set("view engine", "hbs");
+
+//views folder name is necessary for engines, but if we want to rename we have to give "views" path to variable and call app,set("views",variablename)
+const templatepath = path.join(__dirname, "../dynamic_website/template");
+app.set("views", templatepath);
 
 app.get("", (req, res) => {
   res.render("index", {
