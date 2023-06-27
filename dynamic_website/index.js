@@ -1,13 +1,22 @@
 const path = require("path"); //PATH MODELE TO GIVE HTML FILE PATH
 const express = require("express");
+const hbs = require("hbs");
 const app = express();
 const port = 8000;
 
+// To initialize view engine
 app.set("view engine", "hbs");
 
 //views folder name is necessary for engines, but if we want to rename we have to give "views" path to variable and call app,set("views",variablename)
 const templatepath = path.join(__dirname, "../dynamic_website/template");
+
+//To create common header we use partials
+const partialspath = path.join(
+  __dirname,
+  "../dynamic_website/template/partials"
+);
 app.set("views", templatepath);
+hbs.registerPartials(partialspath);
 
 app.get("", (req, res) => {
   res.render("index", {
