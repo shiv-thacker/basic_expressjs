@@ -5,7 +5,9 @@ const port = 8000;
 // how to visit perticular page, it's an routing
 
 app.get("/", (req, res) => {
-  res.send("successfully routed to Home page in expressjs");
+  res.write("<h1>successfully routed to Home page in expressjs</h1>"); //you can also use html elements
+  res.write("<h2>HTML element</h2>"); //If you want to send multipal line in res.send  you have to write res.write & res.end(or res.send)
+  res.send();
 });
 
 app.get("/about", (req, res) => {
@@ -21,8 +23,16 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/temp", (req, res) => {
-  res.send("successfully routed to temperature page in expressjs");
-});
+  res.json([
+    {
+      id: 1,
+      value: "one",
+    },
+    { id: 2, value: "two" },
+    ,
+    { id: 3, value: "three" },
+  ]);
+}); // res.json converts all data into json, while res.send converts only object and arrays into json
 
 app.listen(port, () => {
   console.log(`listening to the port no ${port}`);
