@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
   res.send("welcome to homepage");
 });
 
+app.get("*", (req, res) => {
+  res.render("404", { errormessage: "Oops page could not be found!!" });
+});
+
 app.listen(port, () => {
   console.log(`listening to the port no ${port}`);
 });
